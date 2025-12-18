@@ -1,9 +1,11 @@
-const http = require("http");
+#!/usr/bin/env bash
+set -e
 
-const PORT = 3001;
+cd "$(dirname "$0")"
 
-http.createServer((req, res) => {
-  res.end("CI demo OK\n");
-}).listen(PORT, () => {
-  console.log("Server running on port", PORT);
-});
+# cài deps nếu có
+[ -f package.json ] && npm ci || true
+
+# start / restart bằng pm2
+pm2 restart ci-demo || pm2 start src/server.js --name ci-demo --watch=false
+pm2 save
