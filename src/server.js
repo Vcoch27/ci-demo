@@ -63,10 +63,10 @@ http.createServer((req, res) => {
   }
 
   if (url.pathname === "/health") {
-    return send(res, 200, "CI demo hahahah\n", "text/plain; charset=utf-8");
+    return send(res, 200, "CI demo DEPLOYED!\n", "text/plain; charset=utf-8");
   }
 
   return send(res, 404, "Not Found\n", "text/plain; charset=utf-8");
-}).listen(PORT, () => {
-  console.log("Server running on port", PORT);
+}).listen(PORT, '0.0.0.0', () => {  // ✅ Listen on all interfaces
+  console.log(`Server running on 0.0.0.0:${PORT}`);
 });
