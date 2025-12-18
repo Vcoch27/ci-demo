@@ -63,7 +63,7 @@ http.createServer((req, res) => {
   }
 
   if (url.pathname === "/health") {
-    return send(res, 200, "CI demo OKssss\n", "text/plain; charset=utf-8");
+    return send(res, 200, "CI demo OKkkkk\n", "text/plain; charset=utf-8");
   }
 
   return send(res, 404, "Not Found\n", "text/plain; charset=utf-8");
