@@ -1,6 +1,6 @@
 const http = require("http");
 
-const PORT = 3000;
+const PORT = 3001;
 
 http.createServer((req, res) => {
   res.end("CI demo OK\n");
