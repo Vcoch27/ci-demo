@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -e
 
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$REPO_DIR"
+cd "$(dirname "$0")"
 
-echo "[deploy] start $(date)"
+# cài deps nếu có
+[ -f package.json ] && npm ci || true
 
-# demo: chỉ ghi file
-echo "deploy ok $(date)" >> deploy.log
-
-echo "[deploy] done"
+# start / restart bằng pm2
+pm2 restart ci-demo || pm2 start src/server.js --name ci-demo --watch=false
+pm2 save
